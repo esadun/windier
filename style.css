@@ -1,0 +1,288 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #f0f2f5;
+  color: #1a1a1a;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.updated {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+/* Current conditions */
+.current {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+
+.location-card {
+  flex: 1;
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  border: 2px solid transparent;
+  transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+.location-card.loc-0 {
+  border-color: #e67e22;
+}
+
+.location-card.loc-1 {
+  border-color: #2980b9;
+}
+
+.winner-badge {
+  display: none;
+  font-size: 1.1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  margin-top: 0.75rem;
+}
+
+.location-card.winner .winner-badge {
+  display: inline-block;
+}
+
+.location-card.loc-0 .winner-badge {
+  color: #fff;
+  background: #e67e22;
+}
+
+.location-card.loc-1 .winner-badge {
+  color: #fff;
+  background: #2980b9;
+}
+
+.location-name {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.wind-data {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.wind-stat {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.wind-stat .label {
+  font-size: 0.75rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  width: 5rem;
+  text-align: right;
+}
+
+.wind-stat .value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  min-width: 2.5rem;
+}
+
+.wind-stat .unit {
+  font-size: 0.75rem;
+  color: #888;
+}
+
+.vs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #aaa;
+}
+
+/* Chart */
+.chart-section {
+  margin-top: 1.5rem;
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem 1rem 0.5rem;
+}
+
+.chart-container {
+  width: 100%;
+  height: 160px;
+}
+
+.chart-container canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.chart-legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.25rem 0 0.25rem;
+  font-size: 0.7rem;
+  color: #888;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.legend-swatch {
+  display: inline-block;
+  width: 10px;
+  height: 3px;
+  border-radius: 1px;
+}
+
+.legend-label {
+  color: #bbb;
+}
+
+/* History */
+.history-section {
+  margin-top: 1rem;
+}
+
+.toggle-btn {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: #555;
+  transition: background 0.2s;
+}
+
+.toggle-btn:hover {
+  background: #f5f5f5;
+}
+
+.arrow {
+  transition: transform 0.2s;
+  font-size: 0.7rem;
+}
+
+.arrow.open {
+  transform: rotate(180deg);
+}
+
+.history {
+  margin-top: 0.5rem;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.history-summary {
+  padding: 0.75rem 1rem;
+  font-size: 0.8rem;
+  color: #666;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+.history-legend {
+  text-align: center;
+  font-size: 0.7rem;
+  color: #aaa;
+  padding: 0.5rem 1rem 0.25rem;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+}
+
+.history-table th {
+  padding: 0.5rem 0.75rem;
+  text-align: center;
+  font-weight: 600;
+  color: #888;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #eee;
+}
+
+.history-table td {
+  padding: 0.4rem 0.75rem;
+  text-align: center;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.history-table tr:last-child td {
+  border-bottom: none;
+}
+
+.cell-winner-0 {
+  color: #e67e22;
+  font-weight: 600;
+}
+
+.cell-winner-1 {
+  color: #2980b9;
+  font-weight: 600;
+}
+
+/* Loading / error states */
+.error {
+  text-align: center;
+  color: #c0392b;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+}
+
+@media (max-width: 500px) {
+  .current {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .vs {
+    padding: 0.25rem 0;
+  }
+  .wind-stat .value {
+    font-size: 1.4rem;
+  }
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wind Comparison</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <p class="updated" id="last-updated">Loading...</p>
+    </header>
+
+    <section class="current" id="current">
+      <div class="location-card loc-0" id="card-0">
+        <h2 class="location-name">Roscomare Rd</h2>
+        <div class="wind-data">
+          <div class="wind-stat">
+            <span class="label">Wind</span>
+            <span class="value" id="wind-0">--</span>
+            <span class="unit">mph</span>
+          </div>
+          <div class="wind-stat">
+            <span class="label">Gusts</span>
+            <span class="value" id="gust-0">--</span>
+            <span class="unit">mph</span>
+          </div>
+          <div class="wind-stat">
+            <span class="label">Direction</span>
+            <span class="value" id="dir-0">--</span>
+          </div>
+        </div>
+        <span class="winner-badge">Windier</span>
+      </div>
+
+      <div class="vs" id="vs-badge">vs</div>
+
+      <div class="location-card loc-1" id="card-1">
+        <h2 class="location-name">E. Greystone Ave</h2>
+        <div class="wind-data">
+          <div class="wind-stat">
+            <span class="label">Wind</span>
+            <span class="value" id="wind-1">--</span>
+            <span class="unit">mph</span>
+          </div>
+          <div class="wind-stat">
+            <span class="label">Gusts</span>
+            <span class="value" id="gust-1">--</span>
+            <span class="unit">mph</span>
+          </div>
+          <div class="wind-stat">
+            <span class="label">Direction</span>
+            <span class="value" id="dir-1">--</span>
+          </div>
+        </div>
+        <span class="winner-badge">Windier</span>
+      </div>
+    </section>
+
+    <section class="chart-section">
+      <div class="chart-container">
+        <canvas id="wind-chart"></canvas>
+      </div>
+      <div class="chart-legend">
+        <span class="legend-item"><span class="legend-swatch" style="background:#e67e22"></span>Roscomare Rd</span>
+        <span class="legend-item"><span class="legend-swatch" style="background:#2980b9"></span>E. Greystone Ave</span>
+        <span class="legend-label">sustained wind (mph)</span>
+      </div>
+    </section>
+
+    <section class="history-section">
+      <button class="toggle-btn" id="toggle-history">
+        Last 24 Hours <span class="arrow" id="toggle-arrow">&#9662;</span>
+      </button>
+      <div class="history" id="history" hidden>
+        <div class="history-summary" id="history-summary"></div>
+        <p class="history-legend">sustained (mph) / gusts (mph)</p>
+        <table class="history-table">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Roscomare Rd</th>
+              <th>E. Greystone Ave</th>
+            </tr>
+          </thead>
+          <tbody id="history-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
