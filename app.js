@@ -130,7 +130,9 @@ function renderChart(data) {
 
   const w = container.clientWidth;
   const h = container.clientHeight;
-  const pad = { top: 10, right: 10, bottom: 20, left: 30 };
+  const barH = 6;
+  const barGap = 6;
+  const pad = { top: barH + barGap + 4, right: 10, bottom: 20, left: 44 };
   const plotW = w - pad.left - pad.right;
   const plotH = h - pad.top - pad.bottom;
 
@@ -141,11 +143,42 @@ function renderChart(data) {
 
   ctx.clearRect(0, 0, w, h);
 
+  // Winner bar above chart — each segment centered on its data point
+  const step = plotW / (times.length - 1);
+  for (let i = 0; i < times.length; i++) {
+    const w0 = winds[0][i];
+    const w1 = winds[1][i];
+    let color = null;
+    if (w0 > w1) color = COLORS[0];
+    else if (w1 > w0) color = COLORS[1];
+    if (color) {
+      const cx = pad.left + (i / (times.length - 1)) * plotW;
+      const x1 = i === 0 ? cx : cx - step / 2;
+      const x2 = i === times.length - 1 ? cx : cx + step / 2;
+      const rLeft = i === 0 ? 3 : 0;
+      const rRight = i === times.length - 1 ? 3 : 0;
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.roundRect(x1, 0, x2 - x1 + 0.5, barH, [rLeft, rRight, rRight, rLeft]);
+      ctx.fill();
+    }
+  }
+
+  // Y-axis label (rotated)
+  ctx.save();
+  ctx.translate(10, pad.top + plotH / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.font = "9px -apple-system, sans-serif";
+  ctx.fillStyle = "#bbb";
+  ctx.fillText("sustained wind (mph)", 0, 0);
+  ctx.restore();
+
   // Y-axis gridlines and labels
   ctx.textAlign = "right";
   ctx.textBaseline = "middle";
   ctx.font = "10px -apple-system, sans-serif";
-  ctx.fillStyle = "#ccc";
   const ySteps = 4;
   for (let i = 0; i <= ySteps; i++) {
     const val = (maxVal / ySteps) * i;

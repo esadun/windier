@@ -136,7 +136,7 @@ header {
 
 .chart-container {
   width: 100%;
-  height: 160px;
+  height: 180px;
 }
 
 .chart-container canvas {
@@ -165,10 +165,6 @@ header {
   width: 10px;
   height: 3px;
   border-radius: 1px;
-}
-
-.legend-label {
-  color: #bbb;
 }
 
 /* History */
